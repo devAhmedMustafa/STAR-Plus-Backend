@@ -1,4 +1,3 @@
-const upload = require('../middlewares/azure_blob_upload');
 const Game = require('../models/GameSchema');
 
 const GamesList = async (req, res)=>{
