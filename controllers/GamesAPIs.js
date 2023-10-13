@@ -11,21 +11,10 @@ const GetGame = async (req, res)=>{
     return res.status(200).json(game);
 }
 
-const AddGame = async (req, res, next)=>{
+const AddGame = async (req, res)=>{
     const new_game = new Game(req.body);
     try{
-        if (req.files[0]){
-            new_game.cover = req.files[0].path;
-        }
-        if (req.files[1]){
-            new_game.trailer = req.files[1].path;
-        }
-        if (req.files[2]){
-            new_game.game_files = req.files[2].path;
-        }
-        
         const saved = await new_game.save();
-        next();
         return res.status(201).json(saved);
     }
     catch(err){

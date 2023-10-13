@@ -6,7 +6,7 @@ const {GamesList, GetGame, AddGame, DeleteGame, EditGame, DownloadGame} = requir
 router.route('/').get(GamesList);
 router.route('/:name').get(GetGame);
 router.route('/:id').put(EditGame);
-router.route('/').post(upload_file.array('file') ,AddGame);
+router.route('/').post(AddGame);
 router.route('/:id').delete(DeleteGame);
 router.route('/download/:id').get(DownloadGame);
 
