@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use(cors({
-    origin: ['https://star-plus.vercel.app']
+    origin: ['https://starplus.vercel.app']
 }))
 
 const GamesRouter = require('./routes/GamesRouter');
