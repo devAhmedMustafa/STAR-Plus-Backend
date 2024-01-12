@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const upload_file = require('../middlewares/file_upload')
 
 const {GamesList, GetGame, AddGame, DeleteGame, EditGame, DownloadGame} = require('../controllers/GamesAPIs');
 

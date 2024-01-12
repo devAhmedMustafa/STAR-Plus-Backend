@@ -21,12 +21,14 @@ app.use(bodyParser.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use(cors({
-    origin: ['https://starplus.vercel.app']
+    origin: ['https://starplus.vercel.app', 'http://localhost:3000']
 }))
 
 const GamesRouter = require('./routes/GamesRouter');
-app.use('/games', GamesRouter)
+app.use('/games', GamesRouter);
 
+const AuthRouter = require('./routes/AuthRouter');
+app.use('/auth', AuthRouter);
 
 app.listen(process.env.PORT || 3000, ()=>{
     console.log(`App on Port ${process.env.PORT}`);
