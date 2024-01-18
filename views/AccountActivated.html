@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <style>
+            body {
+                background-color: rgb(24, 24, 24);
+            }
+
+            *{
+                padding: 0;
+                margin: 0;
+                background-color: rgb(29, 29, 29);
+            }
+
+            .svg{
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+            }
+
+            .svg path{
+                filter: url(#glow)
+            }
+
+            .container{
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: whitesmoke
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <div class="container">
+
+            <h1 style="position: absolute; font-family: Arial, Helvetica, sans-serif; background-color: transparent;">Your account has been activated!</h1>
+
+            <svg id="wave" class="svg" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 2400 800">
+                <defs>
+                    <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="oooscillate-grad">
+                        <stop stop-color="#e500a4" stop-opacity="1" offset="0%"></stop>
+                        <stop stop-color="#6a00f4" stop-opacity="1" offset="100%"></stop>
+                    </linearGradient>
+                    <filter id="glow">
+                        <fegaussianblur class="blur" result="coloredBlur" stddeviation="1"></fegaussianblur>
+                        <femerge>
+                            <femergenode in="coloredBlur"></femergenode>
+                        <femergenode in="coloredBlur"></femergenode>
+                        <femergenode in="coloredBlur"></femergenode>
+                            <femergenode in="SourceGraphic"></femergenode>
+                        </femerge>
+                    </filter>
+                </defs>
+                <g stroke-width="4" stroke="url(#oooscillate-grad)" fill="none" stroke-linecap="round">
+                    <path d="M 0 663 Q 600 245 1200 400 Q 1800 555 2400 663" opacity="0.14"></path>
+                    <path d="M 0 646 Q 600 245 1200 400 Q 1800 555 2400 646" opacity="0.52"></path><path d="M 0 629 Q 600 245 1200 400 Q 1800 555 2400 629" opacity="0.74"></path><path d="M 0 612 Q 600 245 1200 400 Q 1800 555 2400 612" opacity="0.74"></path><path d="M 0 595 Q 600 245 1200 400 Q 1800 555 2400 595" opacity="0.32"></path><path d="M 0 578 Q 600 245 1200 400 Q 1800 555 2400 578" opacity="0.42"></path><path d="M 0 561 Q 600 245 1200 400 Q 1800 555 2400 561" opacity="0.29"></path><path d="M 0 561 Q 600 245 1200 400 Q 1800 555 2400 561" opacity="0.29"></path><path d="M 0 561 Q 600 245 1200 400 Q 1800 555 2400 561" opacity="0.29"></path>
+                    <path d="M 0 595 Q 600 245 1200 400 Q 1800 555 2400 595" opacity="0.32"></path><path d="M 0 578 Q 600 245 1200 400 Q 1800 555 2400 578" opacity="0.42"></path>
+                </g>
+            </svg>
+
+        </div>
+
+    </body>
+    <script>
+        let angle = 0;
+        let lastTime = null;
+
+        function Animate(time) {
+        if (lastTime != null) {
+            angle += (time - lastTime) * 0.0006;
+        }
+
+        lastTime = time;
+
+        let wave = document.querySelector("#wave");
+        let paths = [...document.querySelectorAll("svg path")];
+        let width = window.innerWidth;
+
+        wave.setAttribute("width", width);
+
+        let i = 0;
+
+        paths.forEach(path => {
+            path.setAttribute(
+            "d",
+            "M0," + i + " C" +
+            width * 0.33 +
+            "," +
+            (600 + Math.cos(angle) * 300) +
+            " " +
+            width * 0.9 +
+            "," +
+            (300 + Math.sin(angle) * 300) +
+            " " +
+            2500 +
+            "," + i + ""
+            );
+            i+=70;
+        });        
+
+        requestAnimationFrame(Animate);
+        }
+
+        Animate();
+
+    </script>
+</html>

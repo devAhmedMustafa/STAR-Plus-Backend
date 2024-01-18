@@ -50,14 +50,4 @@ const DownloadGame = async (req, res)=>{
     }
 }
 
-const GameSize = async (req, res)=>{
-    try{
-        const game = await Game.findOne({_id: req.params.id})
-        
-    }
-    catch(err){
-        return res.status(500).json(err);
-    }
-}
-
 module.exports = {GamesList, GetGame, AddGame, DeleteGame, EditGame, DownloadGame}

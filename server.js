@@ -18,6 +18,9 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(bodyParser.json());
 
+app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use(cors({
@@ -29,6 +32,9 @@ app.use('/games', GamesRouter);
 
 const AuthRouter = require('./routes/AuthRouter');
 app.use('/auth', AuthRouter);
+
+const AssetsRouter = require('./routes/AssetsRouter')
+app.use('/assets', AssetsRouter);
 
 app.listen(process.env.PORT || 3000, ()=>{
     console.log(`App on Port ${process.env.PORT}`);

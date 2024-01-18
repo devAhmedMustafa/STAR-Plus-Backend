@@ -7,7 +7,8 @@ const GameSchema = new mongoose.Schema({
     trailer: {type: String},
     desc: {type: String},
     genres: {type: Array},
-    date: {type: String, default: Date.now()}
+    date: {type: String, default: Date.now()},
+    logo: {type: String}
 })
 
 module.exports = mongoose.model('Game', GameSchema)
