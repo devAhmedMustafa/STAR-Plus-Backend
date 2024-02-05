@@ -24,7 +24,7 @@ app.engine('html', require('ejs').renderFile);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.use(cors({
-    origin: ['https://starplus.vercel.app', 'http://localhost:3000']
+    origin: ['https://starplusgames.vercel.app', 'http://localhost:3000']
 }))
 
 const GamesRouter = require('./routes/GamesRouter');
@@ -33,7 +33,8 @@ app.use('/games', GamesRouter);
 const AuthRouter = require('./routes/AuthRouter');
 app.use('/auth', AuthRouter);
 
-const AssetsRouter = require('./routes/AssetsRouter')
+const AssetsRouter = require('./routes/AssetsRouter');
+const Dycryping = require('./tests/decrypting');
 app.use('/assets', AssetsRouter);
 
 app.listen(process.env.PORT || 3000, ()=>{

@@ -67,6 +67,7 @@ const ActivateCode = async (req, res)=>{
 const AuthorizeUser = async (req, res)=>{
     userAuthorization(req, res, async()=>{
         const user = await User.findOne({_id: req.params.id})
+        if (!user) return res.status(404).json("User not found");
 
         if (!user.activated) return res.status(403).json("Account is not activated!");
         const {password, ...userInfo} = user._doc;
